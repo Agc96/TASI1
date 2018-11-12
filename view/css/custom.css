@@ -1,0 +1,11 @@
+/* Tablas */
+
+.table .celda-observaciones {
+	display: none;
+	width: 20%;
+}
+@media (min-width: 992px) {
+	.table .celda-observaciones {
+		display: table-cell;
+	}
+}
