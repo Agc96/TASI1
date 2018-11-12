@@ -22,6 +22,7 @@
             <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
           </div>
           <div class="modal-body">
+            <input type="hidden" name="solicitud-ciclo" id="solicitud-ciclo">
             <!-- Curso -->
             <div class="form-group">
               <label for="solicitud-curso">Curso:</label>
@@ -129,6 +130,7 @@
     <div class="offcanvas-wrapper">
       <div class="container-fluid">
         <h3>Lista de solicitudes de software</h3>
+        <h5>Ciclo 2018-2</h5>
         <!-- Tabla de clientes -->
         <div class="table-responsive">
           <table class="table" id="solicitud-lista">
@@ -192,6 +194,10 @@
               </tr>
             </tbody>
           </table>
+        </div>
+        <!-- Botones -->
+        <div class="text-center">
+          <button class="btn btn-sm btn-outline-secondary">Volver</button>
         </div>
       </div>
     </div>

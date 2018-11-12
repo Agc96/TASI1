@@ -13,49 +13,31 @@
     <script type="text/javascript" src="js/third-party/modernizr.min.js"></script>
   </head>
   <body>
-    <!-- Modal para creación de solicitud -->
+    <!-- Modal para evaluar solicitud -->
     <div class="modal fade" id="modal-solicitud" tabindex="-1" role="dialog">
       <form class="modal-dialog" role="document" method="post">
         <div class="modal-content">
           <div class="modal-header">
-            <h4 class="modal-title">Crear una solicitud de software</h4>
+            <h4 class="modal-title">Evaluar solicitud de software</h4>
             <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
           </div>
           <div class="modal-body">
-            <!-- Curso -->
+            <input type="hidden" name="solicitud-id" id="solicitud-id">
+            <!-- Aprobar o rechazar solicitud -->
             <div class="form-group">
-              <label for="solicitud-curso">Curso:</label>
-              <select name="solicitud-curso" id="solicitud-curso" class="form-control form-control-sm" required="">
-                <option value="" disabled="" selected="">Seleccione un curso...</option>
-                <option value="1">INF144 - Técnicas de Programación</option>
-                <option value="2">INF246 - Bases de Datos</option>
-              </select>
-            </div>
-            <!-- Nombre del software -->
-            <div class="form-group">
-              <label for="solicitud-software">Software:</label>
-              <input type="text" name="solicitud-software" id="solicitud-software" class="form-control form-control-sm" placeholder="Nombre del software a instalarse" required="">
-            </div>
-            <!-- Versión y sistema operativo -->
-            <div class="row">
-              <div class="col-sm-6 form-group">
-                <label for="solicitud-version">Versión:</label>
-                <input type="text" name="solicitud-version" id="solicitud-version" class="form-control form-control-sm" placeholder="Versión del software">
+              <div class="custom-control custom-radio custom-control-inline">
+                <input class="custom-control-input" id="solicitud-aprobar" name="solicitud-evaluar" type="radio" value="1" checked="">
+                <label class="custom-control-label" for="solicitud-aprobar">Aprobar solicitud</label>
               </div>
-              <div class="col-sm-6 form-group">
-                <label for="solicitud-so">Sistema operativo:</label>
-                <select name="solicitud-so" id="solicitud-so" class="form-control form-control-sm" required="">
-                  <option value="" disabled="" selected="">Seleccione un S.O...</option>
-                  <option value="1">Windows 7</option>
-                  <option value="2">Linux Mint</option>
-                  <option value="3">Mac OS X</option>
-                </select>
+              <div class="custom-control custom-radio custom-control-inline">
+                <input class="custom-control-input" id="solicitud-rechazar" name="solicitud-evaluar" type="radio" value="0">
+                <label class="custom-control-label" for="solicitud-rechazar">Rechazar solicitud</label>
               </div>
             </div>
-            <!-- Observaciones del profesor -->
+            <!-- Observaciones del personal de soporte -->
             <div class="form-group">
               <label for="solicitud-observaciones">Observaciones:</label>
-              <textarea name="solicitud-observaciones" id="solicitud-observaciones" class="form-control" placeholder="Observaciones del profesor" rows="3"></textarea>
+              <textarea name="solicitud-observaciones" id="solicitud-observaciones" class="form-control" placeholder="Observaciones del personal de soporte. Es necesario llenar este texto si se rechaza la solicitud." rows="3"></textarea>
             </div>
           </div>
           <div class="modal-footer">
@@ -129,6 +111,7 @@
     <div class="offcanvas-wrapper">
       <div class="container-fluid">
         <h3>Lista de solicitudes de software</h3>
+        <h5>Ciclo 2018-2</h5>
         <!-- Tabla de clientes -->
         <div class="table-responsive">
           <table class="table" id="solicitud-lista">
@@ -137,21 +120,35 @@
               <tr>
                 <th scope="col">ID</th>
                 <th scope="col">Curso</th>
+                <th scope="col">Profesor</th>
                 <th scope="col">Software</th>
                 <th scope="col" class="celda-observaciones">Observaciones del profesor</th>
                 <th scope="col">Estado</th>
                 <th scope="col" class="celda-observaciones">Observaciones de Soporte</th>
-                <th scope="col" class="text-right">
-                  <button class="btn btn-sm btn-primary" data-toggle="modal" data-target="#modal-solicitud"><i class="icon-plus"></i> <span class="d-sm-inline d-none">Agregar</span></button>
-                </th>
+                <th scope="col"></th>
               </tr>
             </thead>
             <!-- Datos -->
+            <tbody id="solicitud-lista-pendientes">
+              <tr>
+                <th scope="row">4</th>
+                <td>INF265<br>Aplicaciones en Ciencias de la Computación</td>
+                <td>Arturo Oncevay</td>
+                <td><strong>Anaconda</strong> 5.3<br>Windows 7</td>
+                <td class="celda-observaciones">Necesita Python 3.5 o superior</td>
+                <td>Pendiente</td>
+                <td class="celda-observaciones"></td>
+                <td class="text-right" data-toggle="modal" data-target="#modal-solicitud">
+                  <button class="btn btn-sm btn-info" data-toggle="tooltip" data-original-title="Evaluar"><i class="icon-paper"></i></button>
+                </td>
+              </tr>
+            </tbody>
             <tbody id="solicitud-lista-aprobadas">
               <tr>
                 <th scope="row">1</th>
                 <td>INF246<br>Bases de Datos</td>
-                <td><strong>Oracle SQL Developer</strong> (sin&nbsp;versión)<br>Windows 7</td>
+                <td>César Aguilera</td>
+                <td><strong>Oracle SQL Developer</strong><br>Windows 7</td>
                 <td class="celda-observaciones"></td>
                 <td class="text-success">Aprobada</td>
                 <td class="celda-observaciones"></td>
@@ -160,6 +157,7 @@
               <tr>
                 <th scope="row">2</th>
                 <td>INF227<br>Desarrollo de Programas 2</td>
+                <td>César Aguilera</td>
                 <td><strong>Unreal Engine</strong> 4<br>Windows 7</td>
                 <td class="celda-observaciones">Necesita estar en las máquinas del V201 y V202</td>
                 <td class="text-success">Aprobada</td>
@@ -171,27 +169,19 @@
               <tr>
                 <th scope="row">3</th>
                 <td>INF227<br>Desarrollo de Programas 2</td>
-                <td><strong>Android Studio</strong> (sin&nbsp;versión)<br>Linux Mint</td>
+                <td>César Aguilera</td>
+                <td><strong>Android Studio</strong><br>Linux Mint</td>
                 <td class="celda-observaciones">Necesita estar en las máquinas del V201 y V202</td>
                 <td class="text-danger">Rechazada</td>
                 <td class="celda-observaciones">No se pudo instalar en Linux Mint, pero pueden usar la versión instalada en Windows 7</td>
                 <td></td>
               </tr>
             </tbody>
-            <tbody id="solicitud-lista-pendientes">
-              <tr>
-                <th scope="row">4</th>
-                <td>INF265<br>Aplicaciones en Ciencias de la Computación</td>
-                <td><strong>Anaconda</strong> 5.3<br>Windows 7</td>
-                <td class="celda-observaciones">Necesita Python 3.5 o superior</td>
-                <td>Pendiente</td>
-                <td class="celda-observaciones"></td>
-                <td class="text-right">
-                  <button class="btn btn-sm btn-danger" data-toggle="tooltip" data-original-title="Eliminar"><i class="icon-trash"></i></button>
-                </td>
-              </tr>
-            </tbody>
           </table>
+        </div>
+        <!-- Botones -->
+        <div class="text-center">
+          <button class="btn btn-sm btn-outline-secondary">Volver</button>
         </div>
       </div>
     </div>
