@@ -31,6 +31,8 @@ $('.login-box').on('submit', function (event) {
 			window.location.href = 'admin-curso.html'; break;
 		case 'profesor':
 			window.location.href = 'profesor-solicitud.html'; break;
+		case 'soporte':
+			window.location.href = 'soporte-solicitud.html'; break;
 	}
 });
 
