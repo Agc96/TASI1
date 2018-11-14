@@ -26,12 +26,23 @@
             <!-- Aprobar o rechazar solicitud -->
             <div class="form-group">
               <div class="custom-control custom-radio custom-control-inline">
-                <input class="custom-control-input" id="solicitud-aprobar" name="solicitud-evaluar" type="radio" value="1" checked="">
+                <input class="custom-control-input" id="solicitud-aprobar" name="solicitud-veredicto" type="radio" value="1" checked="">
                 <label class="custom-control-label" for="solicitud-aprobar">Aprobar solicitud</label>
               </div>
               <div class="custom-control custom-radio custom-control-inline">
-                <input class="custom-control-input" id="solicitud-rechazar" name="solicitud-evaluar" type="radio" value="0">
+                <input class="custom-control-input" id="solicitud-rechazar" name="solicitud-veredicto" type="radio" value="0">
                 <label class="custom-control-label" for="solicitud-rechazar">Rechazar solicitud</label>
+              </div>
+            </div>
+            <!-- Fechas de instalación y verificación en caso de aprobación -->
+            <div class="row">
+              <div class="col-sm-6 form-group">
+                <label for="solicitud-fecha-instalacion">Fecha de instalación:</label>
+                <input type="date" name="solicitud-fecha-instalacion" id="solicitud-fecha-instalacion" class="form-control form-control-sm" placeholder="dd/mm/aaaa" required="">
+              </div>
+              <div class="col-sm-6 form-group">
+                <label for="solicitud-fecha-verificacion">Fecha de verificación:</label>
+                <input type="date" name="solicitud-fecha-verificacion" id="solicitud-fecha-verificacion" class="form-control form-control-sm" placeholder="dd/mm/aaaa" required="">
               </div>
             </div>
             <!-- Observaciones del personal de soporte -->
@@ -61,7 +72,8 @@
       <nav class="offcanvas-menu">
         <ul class="menu">
           <!-- Inicio -->
-          <li class="active"><a href="#">Solicitudes de software</a></li>
+          <li class="active"><a href="soporte-solicitud.html">Solicitudes de software</a></li>
+          <li><a href="soporte-instalacion.html">Instalaciones de software</a></li>
           <!-- Opciones de usuario -->
           <li class="offcanvas-header">
             <h3 class="offcanvas-title">Opciones de usuario</h3>
@@ -138,8 +150,8 @@
                 <td class="celda-observaciones">Necesita Python 3.5 o superior</td>
                 <td>Pendiente</td>
                 <td class="celda-observaciones"></td>
-                <td class="text-right" data-toggle="modal" data-target="#modal-solicitud">
-                  <button class="btn btn-sm btn-info" data-toggle="tooltip" data-original-title="Evaluar"><i class="icon-paper"></i></button>
+                <td class="text-right">
+                  <button class="btn btn-sm btn-info solicitud-evaluar" data-toggle="tooltip" data-original-title="Evaluar"><i class="icon-paper"></i></button>
                 </td>
               </tr>
             </tbody>
@@ -195,6 +207,6 @@
     <script type="text/javascript" src="js/third-party/vendor.min.js"></script>
     <script type="text/javascript" src="js/third-party/scripts.min.js"></script>
     <script type="text/javascript" src="js/utilidades.js"></script>
-    <!-- script type="text/javascript" src="js/admin/inicio.js"></script -->
+    <script type="text/javascript" src="js/soporte/solicitud.js"></script>
   </body>
 </html>

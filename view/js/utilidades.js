@@ -22,4 +22,3 @@ function showServerMessage (mensaje, error) {
 	if (error) showMessage('danger', mensaje, 'icon-ban', 'Error');
 	else showMessage('success', mensaje, 'icon-check', 'Éxito');
 }
-
