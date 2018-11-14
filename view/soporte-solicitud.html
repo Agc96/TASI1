@@ -123,8 +123,46 @@
     <div class="offcanvas-wrapper">
       <div class="container-fluid">
         <h3>Lista de solicitudes de software</h3>
-        <h5>Ciclo 2018-2</h5>
+        <!-- Formulario de búsqueda -->
+        <form class="search-box" method="get">
+          <div class="row">
+            <!-- Ciclo -->
+            <div class="col-lg-2 col-sm-4 form-group">
+              <label for="busqueda-ciclo">Ciclo a buscar:</label>
+              <select id="busqueda-ciclo" name="busqueda-ciclo" class="form-control form-control-sm">
+                <option value="1">2018-2</option>
+              </select>
+            </div>
+            <!-- Curso -->
+            <div class="col-lg-4 col-sm-8 form-group">
+              <label for="busqueda-curso">Curso a buscar:</label>
+              <select id="busqueda-curso" name="busqueda-curso" class="form-control form-control-sm">
+                <option value="0">Todos los cursos</option>
+                <option value="1">INF246 - Bases de Datos</option>
+                <option value="2">INF227 - Desarrollo de Programas 2</option>
+                <option value="3">INF265 - Aplicaciones de Ciencias de la Computación</option>
+              </select>
+            </div>
+            <!-- Profesor -->
+            <div class="col-sm form-group">
+              <label for="busqueda-profesor">Profesor a buscar:</label>
+              <select id="busqueda-profesor" name="busqueda-profesor" class="form-control form-control-sm">
+                <option value="">Todos los profesores</option>
+                <option value="1">Arturo Oncevay</option>
+                <option value="2">César Aguilera Serpa</option>
+                <option value="3">Rony Cueva</option>
+                <option value="4">Freddy Paz</option>
+                <option value="5">Manuel Tupia Anticona</option>
+              </select>
+            </div>
+            <!-- Botones -->
+            <div class="col-sm-auto align-self-end text-right">
+              <button type="submit" class="btn btn-sm btn-info"><i class="icon-search"></i> Buscar</button>
+            </div>
+          </div>
+        </form>
         <!-- Tabla de clientes -->
+        <h5>Solicitudes del ciclo 2018-2</h5>
         <div class="table-responsive">
           <table class="table" id="solicitud-lista">
             <!-- Cabecera -->
@@ -144,7 +182,7 @@
             <tbody id="solicitud-lista-pendientes">
               <tr>
                 <th scope="row">4</th>
-                <td>INF265<br>Aplicaciones en Ciencias de la Computación</td>
+                <td>INF265<br>Aplicaciones de Ciencias de la Computación</td>
                 <td>Arturo Oncevay</td>
                 <td><strong>Anaconda</strong> 5.3<br>Windows 7</td>
                 <td class="celda-observaciones">Necesita Python 3.5 o superior</td>
@@ -190,10 +228,6 @@
               </tr>
             </tbody>
           </table>
-        </div>
-        <!-- Botones -->
-        <div class="text-center">
-          <button class="btn btn-sm btn-outline-secondary">Volver</button>
         </div>
       </div>
     </div>

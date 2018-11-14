@@ -1,7 +1,7 @@
 jQuery(document).ready(function ($) {
 
 	/* Abrir el modal al hacer clic en "Evaluar solicitud" */
-	$('#instalacion-lista-pendientes').on('click', '.instalacion-evaluar', function () {
+	$('#solicitud-lista-pendientes').on('click', '.solicitud-evaluar', function () {
 		$('#modal-solicitud').modal('show');
 	});
 
