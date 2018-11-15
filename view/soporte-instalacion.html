@@ -2,7 +2,7 @@
 <html lang="es">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>Sistema de Gestión de Software | Mantenimiento de cursos</title>
+    <title>Sistema de Gestión de Software | Instalaciones de software</title>
     <!-- Meta tag para moviles -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <!-- Estilos incluyendo: Bootstrap, Font Icons, Plugins, etc.-->
@@ -13,30 +13,44 @@
     <script type="text/javascript" src="js/third-party/modernizr.min.js"></script>
   </head>
   <body>
-    <!-- Modal para registro de curso -->
-    <div class="modal fade" id="modal-curso" tabindex="-1" role="dialog">
+    <!-- Modal para evaluar instalación -->
+    <div class="modal fade" id="modal-instalacion-evaluar" tabindex="-1" role="dialog">
       <form class="modal-dialog" role="document" method="post">
         <div class="modal-content">
           <div class="modal-header">
-            <h4 class="modal-title">Agregar un curso</h4>
+            <h4 class="modal-title">Evaluar instalación de software</h4>
             <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
           </div>
           <div class="modal-body">
-            <!-- Código PUCP -->
+            <input type="hidden" name="instalacion-id" id="instalacion-id">
+            <!-- Veredictos de la instalación -->
             <div class="form-group">
-              <label for="curso-codigo">Código PUCP:</label>
-              <input type="text" name="curso-codigo" id="curso-codigo" class="form-control form-control-sm" placeholder="Código PUCP del curso">
+              <div class="custom-control custom-checkbox">
+                <input type="hidden" name="instalacion-desplegado" value="0">
+                <input class="custom-control-input" id="instalacion-desplegado" name="instalacion-desplegado" type="checkbox" value="1">
+                <label class="custom-control-label" for="instalacion-desplegado">Se desplegó correctamente el software</label>
+              </div>
+              <div class="custom-control custom-checkbox">
+                <input type="hidden" name="instalacion-funciona" value="0">
+                <input class="custom-control-input" id="instalacion-funciona" name="instalacion-funciona" type="checkbox" value="1" disabled="">
+                <label class="custom-control-label" for="instalacion-funciona">El software desplegado funciona correctamente</label>
+              </div>
             </div>
-            <!-- Nombre -->
-            <div class="form-group">
-              <label for="curso-nombre">Nombre:</label>
-              <input type="text" name="curso-nombre" id="curso-nombre" class="form-control form-control-sm" placeholder="Nombre del curso">
+            <!-- Fechas de instalación y verificación en caso de reprogramación -->
+            <div class="row">
+              <div class="col-sm-6 form-group">
+                <label for="instalacion-fecha-nueva">Nueva fecha de instalación:</label>
+                <input type="date" name="instalacion-fecha-nueva" id="instalacion-fecha-nueva" class="form-control form-control-sm" placeholder="dd/mm/aaaa" required="">
+              </div>
+              <div class="col-sm-6 form-group">
+                <label for="instalacion-fecha-verificacion">Nueva fecha de verificación:</label>
+                <input type="date" name="instalacion-fecha-verificacion" id="instalacion-fecha-verificacion" class="form-control form-control-sm" placeholder="dd/mm/aaaa" required="">
+              </div>
             </div>
-            <!-- Observaciones del profesor -->
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-sm btn-outline-secondary" data-dismiss="modal">Cancelar</button>
-            <button type="submit" class="btn btn-sm btn-primary">Agregar</button>
+            <button type="submit" class="btn btn-sm btn-primary">Evaluar</button>
           </div>
         </div>
       </form>
@@ -55,13 +69,8 @@
       <nav class="offcanvas-menu">
         <ul class="menu">
           <!-- Inicio -->
-          <li class="has-children active">
-            <span><a href="#">Mantenimientos</a><span class="sub-menu-toggle"></span></span>
-            <ul class="offcanvas-submenu">
-              <li class="active"><a href="admin-curso.html">Cursos</a></li>
-              <li><a href="admin-ciclo.html">Ciclos</a></li>
-            </ul>
-          </li>
+          <li><a href="soporte-solicitud.html">Solicitudes de software</a></li>
+          <li class="active"><a href="soporte-instalacion.html">Instalaciones de software</a></li>
           <!-- Opciones de usuario -->
           <li class="offcanvas-header">
             <h3 class="offcanvas-title">Opciones de usuario</h3>
@@ -110,41 +119,60 @@
     <!--           -->
     <div class="offcanvas-wrapper">
       <div class="container-fluid">
-        <h3>Mantenimiento de cursos</h3>
+        <h3>Lista de instalaciones de software</h3>
+        <h5>Ciclo 2018-2</h5>
         <!-- Tabla de clientes -->
         <div class="table-responsive">
-          <table class="table" id="curso-lista">
+          <table class="table" id="instalacion-lista">
             <!-- Cabecera -->
             <thead class="thead-light">
               <tr>
                 <th scope="col">ID</th>
-                <th scope="col">Código PUCP</th>
-                <th scope="col">Nombre del curso</th>
+                <th scope="col">Software</th>
+                <th scope="col">Estado</th>
                 <th scope="col" class="text-right">
-                  <button class="btn btn-sm btn-primary" data-toggle="modal" data-target="#modal-curso"><i class="icon-plus"></i> <span class="d-sm-inline d-none">Agregar</span></button>
+                  <button class="btn btn-sm btn-primary"><i class="icon-plus"></i> <span class="d-sm-inline d-none">Agregar</span></button>
                 </th>
               </tr>
             </thead>
             <!-- Datos -->
-            <tbody>
+            <tbody id="instalacion-lista-pendientes">
               <tr>
-                <th scope="row">1</th>
-                <td>INF144</td>
-                <td>Técnicas de Programación</td>
+                <th scope="row">4</th>
+                <td><strong>Anaconda</strong> 5.3<br>Windows 7</td>
+                <td>Sin evaluar</td>
                 <td class="text-right">
-                  <button class="btn btn-sm btn-danger" data-toggle="tooltip" data-original-title="Dar de baja"><i class="icon-trash"></i></button>
-                </td>
-              </tr>
-              <tr>
-                <th scope="row">2</th>
-                <td>INF246</td>
-                <td>Bases de Datos</td>
-                <td class="text-right">
-                  <button class="btn btn-sm btn-danger" data-toggle="tooltip" data-original-title="Dar de baja"><i class="icon-trash"></i></button>
+                  <button class="btn btn-sm btn-info instalacion-evaluar" data-toggle="tooltip" data-original-title="Evaluar"><i class="icon-paper"></i></button>
                 </td>
               </tr>
             </tbody>
+            <tbody id="instalacion-lista-fallidas">
+              <tr>
+                <th scope="row">2</th>
+                <td><strong>Unreal Engine</strong> 4<br>Windows 7</td>
+                <td class="text-warning">No funciona correctamente</td>
+                <td></td>
+              </tr>
+              <tr>
+                <th scope="row">3</th>
+                <td><strong>Android Studio</strong><br>Linux Mint</td>
+                <td class="text-danger">No se desplegó correctamente</td>
+                <td></td>
+              </tr>
+            </tbody>
+            <tbody id="instalacion-lista-exitosas">
+              <tr>
+                <th scope="row">1</th>
+                <td><strong>Oracle SQL Developer</strong><br>Windows 7</td>
+                <td class="text-success">Desplegado y funcional</td>
+                <td></td>
+              </tr>
+            </tbody>
           </table>
+        </div>
+        <!-- Botones -->
+        <div class="text-center">
+          <button class="btn btn-sm btn-outline-secondary">Volver</button>
         </div>
       </div>
     </div>
@@ -158,6 +186,6 @@
     <script type="text/javascript" src="js/third-party/vendor.min.js"></script>
     <script type="text/javascript" src="js/third-party/scripts.min.js"></script>
     <script type="text/javascript" src="js/utilidades.js"></script>
-    <!-- script type="text/javascript" src="js/admin/inicio.js"></script -->
+    <script type="text/javascript" src="js/soporte/instalacion.js"></script>
   </body>
 </html>

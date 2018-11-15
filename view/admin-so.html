@@ -2,7 +2,7 @@
 <html lang="es">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>Sistema de Gestión de Software | Mantenimiento de cursos</title>
+    <title>Sistema de Gestión de Software | Mantenimiento de sistemas operativos</title>
     <!-- Meta tag para moviles -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <!-- Estilos incluyendo: Bootstrap, Font Icons, Plugins, etc.-->
@@ -13,24 +13,19 @@
     <script type="text/javascript" src="js/third-party/modernizr.min.js"></script>
   </head>
   <body>
-    <!-- Modal para registro de curso -->
-    <div class="modal fade" id="modal-curso" tabindex="-1" role="dialog">
+    <!-- Modal para registro de sistema operativo -->
+    <div class="modal fade" id="modal-so" tabindex="-1" role="dialog">
       <form class="modal-dialog" role="document" method="post">
         <div class="modal-content">
           <div class="modal-header">
-            <h4 class="modal-title">Agregar un curso</h4>
+            <h4 class="modal-title">Agregar un sistema operativo</h4>
             <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
           </div>
           <div class="modal-body">
-            <!-- Código PUCP -->
-            <div class="form-group">
-              <label for="curso-codigo">Código PUCP:</label>
-              <input type="text" name="curso-codigo" id="curso-codigo" class="form-control form-control-sm" placeholder="Código PUCP del curso">
-            </div>
             <!-- Nombre -->
             <div class="form-group">
-              <label for="curso-nombre">Nombre:</label>
-              <input type="text" name="curso-nombre" id="curso-nombre" class="form-control form-control-sm" placeholder="Nombre del curso">
+              <label for="so-nombre">Nombre:</label>
+              <input type="text" name="so-nombre" id="so-nombre" class="form-control form-control-sm" placeholder="Nombre del sistema operativo, con versión incluida">
             </div>
             <!-- Observaciones del profesor -->
           </div>
@@ -118,10 +113,10 @@
             <thead class="thead-light">
               <tr>
                 <th scope="col">ID</th>
-                <th scope="col">Código PUCP</th>
-                <th scope="col">Nombre del curso</th>
+                <th scope="col">Nombre del SO</th>
+                <th scope="col">Tipo</th>
                 <th scope="col" class="text-right">
-                  <button class="btn btn-sm btn-primary" data-toggle="modal" data-target="#modal-curso"><i class="icon-plus"></i> <span class="d-sm-inline d-none">Agregar</span></button>
+                  <button class="btn btn-sm btn-primary" data-toggle="modal" data-target="#modal-so"><i class="icon-plus"></i> <span class="d-sm-inline d-none">Agregar</span></button>
                 </th>
               </tr>
             </thead>

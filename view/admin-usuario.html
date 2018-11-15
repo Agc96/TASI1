@@ -2,7 +2,7 @@
 <html lang="es">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>Sistema de Gestión de Software | Mantenimiento de cursos</title>
+    <title>Sistema de Gestión de Software | Mantenimiento de usuarios</title>
     <!-- Meta tag para moviles -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <!-- Estilos incluyendo: Bootstrap, Font Icons, Plugins, etc.-->
@@ -13,26 +13,52 @@
     <script type="text/javascript" src="js/third-party/modernizr.min.js"></script>
   </head>
   <body>
-    <!-- Modal para registro de curso -->
-    <div class="modal fade" id="modal-curso" tabindex="-1" role="dialog">
+    <!-- Modal para registro de usuario -->
+    <div class="modal fade" id="modal-usuario" tabindex="-1" role="dialog">
       <form class="modal-dialog" role="document" method="post">
         <div class="modal-content">
           <div class="modal-header">
-            <h4 class="modal-title">Agregar un curso</h4>
+            <h4 class="modal-title">Agregar un usuario</h4>
             <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
           </div>
           <div class="modal-body">
-            <!-- Código PUCP -->
-            <div class="form-group">
-              <label for="curso-codigo">Código PUCP:</label>
-              <input type="text" name="curso-codigo" id="curso-codigo" class="form-control form-control-sm" placeholder="Código PUCP del curso">
-            </div>
             <!-- Nombre -->
             <div class="form-group">
-              <label for="curso-nombre">Nombre:</label>
-              <input type="text" name="curso-nombre" id="curso-nombre" class="form-control form-control-sm" placeholder="Nombre del curso">
+              <label for="usuario-nombre">Nombres y apellidos:</label>
+              <input type="text" name="usuario-nombre" id="usuario-nombre" class="form-control form-control-sm" placeholder="Nombres y apellidos del usuario">
             </div>
-            <!-- Observaciones del profesor -->
+            <!-- Usuario y contraseña -->
+            <div class="form-group">
+              <label for="usuario-apodo">Nombre de usuario:</label>
+              <input type="text" name="usuario-apodo" id="usuario-apodo" class="form-control form-control-sm" placeholder="Nombre de usuario y contraseña inicial">
+            </div>
+            <!-- Correo electrónico -->
+            <div class="form-group">
+              <label for="usuario-correo">Correo electrónico:</label>
+              <input type="email" name="usuario-correo" id="usuario-correo" class="form-control form-control-sm" placeholder="Correo electrónico del usuario">
+            </div>
+            <!-- Roles -->
+            <label class="form-label">Roles del usuario:</label>
+            <div class="form-group">
+              <!-- Rol de personal de soporte -->
+              <div class="custom-control custom-checkbox">
+                <input type="hidden" name="usuario-soporte" value="0">
+                <input class="custom-control-input" id="usuario-soporte" name="usuario-soporte" type="checkbox" value="1">
+                <label class="custom-control-label" for="usuario-soporte">Rol de personal de soporte</label>
+              </div>
+              <!-- Rol de profesor -->
+              <div class="custom-control custom-checkbox">
+                <input type="hidden" name="usuario-profesor" value="0">
+                <input class="custom-control-input" id="usuario-profesor" name="usuario-profesor" type="checkbox" value="1">
+                <label class="custom-control-label" for="usuario-profesor">Rol de profesor</label>
+              </div>
+              <!-- Rol de usuario de máquinas virtuales -->
+              <div class="custom-control custom-checkbox">
+                <input type="hidden" name="usuario-mv" value="0">
+                <input class="custom-control-input" id="usuario-mv" name="usuario-mv" type="checkbox" value="1">
+                <label class="custom-control-label" for="usuario-mv">Rol de usuario de máquinas virtuales</label>
+              </div>
+            </div>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-sm btn-outline-secondary" data-dismiss="modal">Cancelar</button>
@@ -110,18 +136,20 @@
     <!--           -->
     <div class="offcanvas-wrapper">
       <div class="container-fluid">
-        <h3>Mantenimiento de cursos</h3>
+        <h3>Mantenimiento de usuarios</h3>
         <!-- Tabla de clientes -->
         <div class="table-responsive">
-          <table class="table" id="curso-lista">
+          <table class="table" id="usuario-lista">
             <!-- Cabecera -->
             <thead class="thead-light">
               <tr>
                 <th scope="col">ID</th>
-                <th scope="col">Código PUCP</th>
-                <th scope="col">Nombre del curso</th>
+                <th scope="col">Nombre de usuario</th>
+                <th scope="col">Nombres y apellidos</th>
+                <th scope="col">Permisos</th>
+                <th scope="col">Correo electrónico</th>
                 <th scope="col" class="text-right">
-                  <button class="btn btn-sm btn-primary" data-toggle="modal" data-target="#modal-curso"><i class="icon-plus"></i> <span class="d-sm-inline d-none">Agregar</span></button>
+                  <button class="btn btn-sm btn-primary" data-toggle="modal" data-target="#modal-usuario"><i class="icon-plus"></i> <span class="d-sm-inline d-none">Agregar</span></button>
                 </th>
               </tr>
             </thead>
@@ -129,16 +157,59 @@
             <tbody>
               <tr>
                 <th scope="row">1</th>
-                <td>INF144</td>
-                <td>Técnicas de Programación</td>
+                <td>wsegama</td>
+                <td>Walter Segama</td>
+                <td>
+                  <ul class="mb-0">
+                    <li>Administrador</li>
+                    <li>Personal de soporte</li>
+                    <li>Profesor</li>
+                  </ul>
+                </td>
+                <td><a href="mailto:wsegama@pucp.edu.pe">wsegama@pucp.edu.pe</a></td>
                 <td class="text-right">
                   <button class="btn btn-sm btn-danger" data-toggle="tooltip" data-original-title="Dar de baja"><i class="icon-trash"></i></button>
                 </td>
               </tr>
               <tr>
                 <th scope="row">2</th>
-                <td>INF246</td>
-                <td>Bases de Datos</td>
+                <td>aoncevay</td>
+                <td>Arturo Oncevay</td>
+                <td>
+                  <ul class="mb-0">
+                    <li>Profesor</li>
+                    <li>Usuario de MVs</li>
+                  </ul>
+                </td>
+                <td><a href="mailto:aoncevay@pucp.edu.pe">aoncevay@pucp.edu.pe</a></td>
+                <td class="text-right">
+                  <button class="btn btn-sm btn-danger" data-toggle="tooltip" data-original-title="Dar de baja"><i class="icon-trash"></i></button>
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">3</th>
+                <td>caguilera</td>
+                <td>César Aguilera Serpa</td>
+                <td>
+                  <ul class="mb-0">
+                    <li>Profesor</li>
+                  </ul>
+                </td>
+                <td><a href="mailto:cesar.aguilera@pucp.edu.pe">cesar.aguilera@pucp.edu.pe</a></td>
+                <td class="text-right">
+                  <button class="btn btn-sm btn-danger" data-toggle="tooltip" data-original-title="Dar de baja"><i class="icon-trash"></i></button>
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">4</th>
+                <td>equispe</td>
+                <td>Eder Quispe Vilchez</td>
+                <td>
+                  <ul class="mb-0">
+                    <li>Profesor</li>
+                  </ul>
+                </td>
+                <td><a href="mailto:eder.quispe@pucp.edu.pe">eder.quispe@pucp.edu.pe</a></td>
                 <td class="text-right">
                   <button class="btn btn-sm btn-danger" data-toggle="tooltip" data-original-title="Dar de baja"><i class="icon-trash"></i></button>
                 </td>

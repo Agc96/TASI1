@@ -26,12 +26,23 @@
             <!-- Aprobar o rechazar solicitud -->
             <div class="form-group">
               <div class="custom-control custom-radio custom-control-inline">
-                <input class="custom-control-input" id="solicitud-aprobar" name="solicitud-evaluar" type="radio" value="1" checked="">
+                <input class="custom-control-input" id="solicitud-aprobar" name="solicitud-veredicto" type="radio" value="1" checked="">
                 <label class="custom-control-label" for="solicitud-aprobar">Aprobar solicitud</label>
               </div>
               <div class="custom-control custom-radio custom-control-inline">
-                <input class="custom-control-input" id="solicitud-rechazar" name="solicitud-evaluar" type="radio" value="0">
+                <input class="custom-control-input" id="solicitud-rechazar" name="solicitud-veredicto" type="radio" value="0">
                 <label class="custom-control-label" for="solicitud-rechazar">Rechazar solicitud</label>
+              </div>
+            </div>
+            <!-- Fechas de instalación y verificación en caso de aprobación -->
+            <div class="row">
+              <div class="col-sm-6 form-group">
+                <label for="solicitud-fecha-instalacion">Fecha de instalación:</label>
+                <input type="date" name="solicitud-fecha-instalacion" id="solicitud-fecha-instalacion" class="form-control form-control-sm" placeholder="dd/mm/aaaa" required="">
+              </div>
+              <div class="col-sm-6 form-group">
+                <label for="solicitud-fecha-verificacion">Fecha de verificación:</label>
+                <input type="date" name="solicitud-fecha-verificacion" id="solicitud-fecha-verificacion" class="form-control form-control-sm" placeholder="dd/mm/aaaa" required="">
               </div>
             </div>
             <!-- Observaciones del personal de soporte -->
@@ -42,7 +53,7 @@
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-sm btn-outline-secondary" data-dismiss="modal">Cancelar</button>
-            <button type="submit" class="btn btn-sm btn-primary">Enviar</button>
+            <button type="submit" class="btn btn-sm btn-primary">Evaluar</button>
           </div>
         </div>
       </form>
@@ -61,7 +72,8 @@
       <nav class="offcanvas-menu">
         <ul class="menu">
           <!-- Inicio -->
-          <li class="active"><a href="#">Solicitudes de software</a></li>
+          <li class="active"><a href="soporte-solicitud.html">Solicitudes de software</a></li>
+          <li><a href="soporte-instalacion.html">Instalaciones de software</a></li>
           <!-- Opciones de usuario -->
           <li class="offcanvas-header">
             <h3 class="offcanvas-title">Opciones de usuario</h3>
@@ -111,8 +123,46 @@
     <div class="offcanvas-wrapper">
       <div class="container-fluid">
         <h3>Lista de solicitudes de software</h3>
-        <h5>Ciclo 2018-2</h5>
+        <!-- Formulario de búsqueda -->
+        <form class="search-box" method="get">
+          <div class="row">
+            <!-- Ciclo -->
+            <div class="col-lg-2 col-sm-4 form-group">
+              <label for="busqueda-ciclo">Ciclo a buscar:</label>
+              <select id="busqueda-ciclo" name="busqueda-ciclo" class="form-control form-control-sm">
+                <option value="1">2018-2</option>
+              </select>
+            </div>
+            <!-- Curso -->
+            <div class="col-lg-4 col-sm-8 form-group">
+              <label for="busqueda-curso">Curso a buscar:</label>
+              <select id="busqueda-curso" name="busqueda-curso" class="form-control form-control-sm">
+                <option value="0">Todos los cursos</option>
+                <option value="1">INF246 - Bases de Datos</option>
+                <option value="2">INF227 - Desarrollo de Programas 2</option>
+                <option value="3">INF265 - Aplicaciones de Ciencias de la Computación</option>
+              </select>
+            </div>
+            <!-- Profesor -->
+            <div class="col-sm form-group">
+              <label for="busqueda-profesor">Profesor a buscar:</label>
+              <select id="busqueda-profesor" name="busqueda-profesor" class="form-control form-control-sm">
+                <option value="">Todos los profesores</option>
+                <option value="1">Arturo Oncevay</option>
+                <option value="2">César Aguilera Serpa</option>
+                <option value="3">Rony Cueva</option>
+                <option value="4">Freddy Paz</option>
+                <option value="5">Manuel Tupia Anticona</option>
+              </select>
+            </div>
+            <!-- Botones -->
+            <div class="col-sm-auto align-self-end text-right">
+              <button type="submit" class="btn btn-sm btn-info"><i class="icon-search"></i> Buscar</button>
+            </div>
+          </div>
+        </form>
         <!-- Tabla de clientes -->
+        <h5>Solicitudes del ciclo 2018-2</h5>
         <div class="table-responsive">
           <table class="table" id="solicitud-lista">
             <!-- Cabecera -->
@@ -132,14 +182,14 @@
             <tbody id="solicitud-lista-pendientes">
               <tr>
                 <th scope="row">4</th>
-                <td>INF265<br>Aplicaciones en Ciencias de la Computación</td>
+                <td>INF265<br>Aplicaciones de Ciencias de la Computación</td>
                 <td>Arturo Oncevay</td>
                 <td><strong>Anaconda</strong> 5.3<br>Windows 7</td>
                 <td class="celda-observaciones">Necesita Python 3.5 o superior</td>
                 <td>Pendiente</td>
                 <td class="celda-observaciones"></td>
-                <td class="text-right" data-toggle="modal" data-target="#modal-solicitud">
-                  <button class="btn btn-sm btn-info" data-toggle="tooltip" data-original-title="Evaluar"><i class="icon-paper"></i></button>
+                <td class="text-right">
+                  <button class="btn btn-sm btn-info solicitud-evaluar" data-toggle="tooltip" data-original-title="Evaluar"><i class="icon-paper"></i></button>
                 </td>
               </tr>
             </tbody>
@@ -179,10 +229,6 @@
             </tbody>
           </table>
         </div>
-        <!-- Botones -->
-        <div class="text-center">
-          <button class="btn btn-sm btn-outline-secondary">Volver</button>
-        </div>
       </div>
     </div>
     <!-- Boton para volver arriba -->
@@ -195,6 +241,6 @@
     <script type="text/javascript" src="js/third-party/vendor.min.js"></script>
     <script type="text/javascript" src="js/third-party/scripts.min.js"></script>
     <script type="text/javascript" src="js/utilidades.js"></script>
-    <!-- script type="text/javascript" src="js/admin/inicio.js"></script -->
+    <script type="text/javascript" src="js/soporte/solicitud.js"></script>
   </body>
 </html>
