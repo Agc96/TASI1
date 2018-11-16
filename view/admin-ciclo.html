@@ -13,6 +13,47 @@
     <script type="text/javascript" src="js/third-party/modernizr.min.js"></script>
   </head>
   <body>
+    <!-- Modal para registro de ciclo -->
+    <div class="modal fade" id="modal-ciclo" tabindex="-1" role="dialog">
+      <form class="modal-dialog" role="document" method="post">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title">Agregar un ciclo</h4>
+            <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          </div>
+          <div class="modal-body">
+            <!-- Nombre -->
+            <div class="form-group">
+              <label for="ciclo-nombre">Nombre:</label>
+              <input type="text" name="ciclo-nombre" id="ciclo-nombre" class="form-control form-control-sm" placeholder="Nombre del ciclo">
+            </div>
+            <!-- Fechas -->
+            <div class="row">
+              <div class="col-sm-6 form-group">
+                <label for="ciclo-matricula-inicio">Fecha de inicio de matrícula:</label>
+                <input type="date" name="ciclo-matricula-inicio" id="ciclo-matricula-inicio" class="form-control form-control-sm" placeholder="dd/mm/aaaa">
+              </div>
+              <div class="col-sm-6 form-group">
+                <label for="ciclo-matricula-fin">Fecha de fin de matrícula:</label>
+                <input type="date" name="ciclo-matricula-fin" id="ciclo-matricula-fin" class="form-control form-control-sm" placeholder="dd/mm/aaaa">
+              </div>
+              <div class="col-sm-6 form-group">
+                <label for="ciclo-clases-inicio">Fecha de inicio de clases:</label>
+                <input type="date" name="ciclo-clases-inicio" id="ciclo-clases-inicio" class="form-control form-control-sm" placeholder="dd/mm/aaaa">
+              </div>
+              <div class="col-sm-6 form-group">
+                <label for="ciclo-clases-fin">Fecha de fin de ciclo:</label>
+                <input type="date" name="ciclo-clases-fin" id="ciclo-clases-fin" class="form-control form-control-sm" placeholder="dd/mm/aaaa">
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-sm btn-outline-secondary" data-dismiss="modal">Cancelar</button>
+            <button type="submit" class="btn btn-sm btn-primary">Agregar</button>
+          </div>
+        </div>
+      </form>
+    </div>
     <!--      -->
     <!-- Menu -->
     <!--      -->
@@ -30,8 +71,8 @@
           <li class="has-children active">
             <span><a href="#">Mantenimientos</a><span class="sub-menu-toggle"></span></span>
             <ul class="offcanvas-submenu">
-              <li class="active"><a href="admin-curso.html">Cursos</a></li>
-              <li><a href="admin-ciclo.html">Ciclos</a></li>
+              <li><a href="admin-curso.html">Cursos</a></li>
+              <li class="active"><a href="admin-ciclo.html">Ciclos</a></li>
             </ul>
           </li>
           <!-- Opciones de usuario -->
@@ -82,18 +123,21 @@
     <!--           -->
     <div class="offcanvas-wrapper">
       <div class="container-fluid">
-        <h3>Mantenimiento de cursos</h3>
+        <h3>Mantenimiento de ciclos</h3>
         <!-- Tabla de clientes -->
         <div class="table-responsive">
-          <table class="table" id="curso-tabla">
+          <table class="table" id="ciclo-lista">
             <!-- Cabecera -->
             <thead class="thead-light">
               <tr>
                 <th scope="col">ID</th>
-                <th scope="col">Código PUCP</th>
-                <th scope="col">Nombre del curso</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Fecha de inicio de matrícula</th>
+                <th scope="col">Fecha de fin de matrícula</th>
+                <th scope="col">Fecha de inicio de clases</th>
+                <th scope="col">Fecha de fin de ciclo</th>
                 <th scope="col" class="text-right">
-                  <button class="btn btn-sm btn-primary"><i class="icon-plus"></i> <span class="d-sm-inline d-none">Agregar</span></button>
+                  <button class="btn btn-sm btn-primary" data-toggle="modal" data-target="#modal-ciclo"><i class="icon-plus"></i> <span class="d-sm-inline d-none">Agregar</span></button>
                 </th>
               </tr>
             </thead>
@@ -101,18 +145,13 @@
             <tbody>
               <tr>
                 <th scope="row">1</th>
-                <td>INF144</td>
-                <td>Técnicas de Programación</td>
+                <td>2018-2</td>
+                <td>02/08/2018</td>
+                <td>07/08/2018</td>
+                <td>20/08/2018</td>
+                <td>11/01/2019</td>
                 <td class="text-right">
-                  <button class="btn btn-sm btn-danger" data-toggle="tooltip" data-original-title="Eliminar"><i class="icon-trash"></i></button>
-                </td>
-              </tr>
-              <tr>
-                <th scope="row">2</th>
-                <td>INF246</td>
-                <td>Bases de Datos</td>
-                <td class="text-right">
-                  <button class="btn btn-sm btn-danger" data-toggle="tooltip" data-original-title="Eliminar"><i class="icon-trash"></i></button>
+                  <button class="btn btn-sm btn-danger" data-toggle="tooltip" data-original-title="Dar de baja"><i class="icon-trash"></i></button>
                 </td>
               </tr>
             </tbody>
