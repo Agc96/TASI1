@@ -1,5 +1,6 @@
 <?php
 
-header('Location: view/');
+$newURL = "view/index.php";
+header('Location: '.$newURL);
 
 ?>
