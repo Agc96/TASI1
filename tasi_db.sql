@@ -34,6 +34,51 @@ CREATE TABLE `usuario` (
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
+DROP TABLE IF EXISTS 'curso';
+CREATE TABLE 'curso'(
+  'idcurso' int(11) NOT NULL AUTO_INCREMENT,
+  'nombrecurso' varchar(45) NOT NULL,
+  'codigocurso' varchar(7) NOT NULL,
+  PRIMARY KEY('idcurso')
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+
+DROP TABLE IF EXISTS 'software';
+CREATE TABLE 'software'(
+  'idsoftware' int(11) NOT NULL AUTO_INCREMENT,
+  'nombresoftware' varchar(45) NOT NULL,
+  'codigocurso' varchar(7) NOT NULL,
+  PRIMARY KEY('idsoftware')
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+
+DROP TABLE IF EXISTS 'sistemaOperativo';
+CREATE TABLE 'sistemaOperativo'(
+  'idsistemaOperativo' int(11) NOT NULL AUTO_INCREMENT,
+  'nombresistemaOperativo' varchar(45) NOT NULL,  
+  PRIMARY KEY('idsistemaOperativo')
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+
+DROP TABLE IF EXISTS 'solicitud';
+CREATE TABLE 'solicitud'(
+  'idsolicitud' int(11) NOT NULL AUTO_INCREMENT,
+  'estado' varchar(15) NOT NULL,
+  'version' varchar(15) NOT NULL,
+  'observacionesProfesor' varchar(45) NOT NULL,
+  'observacionesSoporte' varchar(45) NOT NULL,
+  PRIMARY KEY('idsolicitud'),
+  FOREIGN KEY (idsoftware)
+    REFERENCES software(idsoftware)
+    ON DELETE CASCADE,
+  FOREIGN KEY (idsistemaOperativo)
+    REFERENCES sistemaOperativo(idsistemaOperativo)
+    ON DELETE CASCADE,
+  FOREIGN KEY (idcurso)
+    REFERENCES curso(idcurso)
+    ON DELETE CASCADE,
+  FOREIGN KEY (idusuario)
+    REFERENCES usuario(idusuario)
+    ON DELETE CASCADE,
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+
 --
 -- Dumping data for table `usuario`
 --
