@@ -18,7 +18,8 @@ class DBase {
     public function __construct() {
         $host = "localhost";
         $user = "root";
-        $pass = "123456";
+        #$pass = "123456";
+        $pass = "";
         
         $db = "tasi1";
         $this->conn = new PDO("mysql:host=$host;dbname=$db;port=3306;charset=utf8;", $user,$pass);
@@ -29,7 +30,8 @@ class DBase {
     public function get_conexion() {
         $host = "localhost";
         $user = "root";
-        $pass = "123456";
+        #$pass = "123456";
+        $pass = "";
         
         $db = "tasi1";
         $conexion = new PDO("mysql:host=$host;dbname=$db;port=3306;charset=utf8;", $user,$pass);

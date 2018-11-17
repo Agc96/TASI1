@@ -30,6 +30,27 @@ class UsuarioDAO extends DBase {
 
     }
 
+    public function getuserid($nombreusuario){
+        $login_correcto = null;
+
+        $sql = "SELECT idusuario FROM usuario WHERE nombreusuario = :nombreusuario";
+        
+        $statement = $this->conn->prepare($sql);
+        $statement->bindParam(':nombreusuario', $nombreusuario);
+        
+        if (!$statement) {
+            return "Error";
+        } else {
+            $statement->execute();
+            while ($result = $statement->fetch()) {
+                $login_correcto = $result["idusuario"];
+                break;
+            }
+            return $login_correcto;
+        }
+
+    }
+
 
 
     public function permisos($nombreusuario){
