@@ -29,8 +29,8 @@ Solicitudes del ciclo 2018-2
               <label for="solicitud-curso">Curso:</label>
               <select name="solicitud-curso" id="solicitud-curso" class="form-control form-control-sm" required="">
                 <option value="" disabled="" selected="">Seleccione un curso...</option>
-                <option value="1">INF144 - Técnicas de Programación</option>
-                <option value="2">INF246 - Bases de Datos</option>
+                <option value="1">INF123 - Lenguaje de Programación 1</option>
+                <option value="2">INF273 - Desarrollo de Programas 2</option>
               </select>
             </div>
             <!-- Nombre del software -->
@@ -50,7 +50,6 @@ Solicitudes del ciclo 2018-2
                   <option value="" disabled="" selected="">Seleccione un S.O...</option>
                   <option value="1">Windows 7</option>
                   <option value="2">Linux Mint</option>
-                  <option value="3">Mac OS X</option>
                 </select>
               </div>
             </div>
@@ -190,7 +189,7 @@ Solicitudes del ciclo 2018-2
                 $listasolicitudes = $solicituddao->obtener_solicitudes(2);
                 $index_row = 1;
                 foreach ($listasolicitudes as $solicitudes) {
-                  $software = $softwaredao->buscarXId ( $solicitudes->getidsoftware );
+                  #$software = $softwaredao->buscarXId ( $solicitudes->getidsoftware );
                   echo '<th scope="row">' . $index_row . '</th> ';
                   echo '<td>' . $solicitudes[0] . '<br>' . $solicitudes[1] . '</td>';
                   echo '<td><strong>' . $solicitudes[2] . '</strong>' . $solicitudes[7] . '<br>' . $solicitudes[3] .'</td>';

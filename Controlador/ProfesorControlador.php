@@ -7,23 +7,7 @@ $solicituddao = new SolicitudDAO();
 
 switch ($action) {
     default:
-        $solicituddao->agregar_solicitud($_POST['login-username']);
+        $solicituddao->agregar_solicitud($_POST['solicitud-curso'], $_POST['solicitud-software'], $_POST['solicitud-version'], $_POST['solicitud-so'], $_POST['solicitud-observaciones']);
+        header("Location: ./Inicio.php?action=loginprof&id=2");
         break;
-
-    case 'login':
-    	if( $usuariodao->login_user( $_POST['login-username'], $_POST['login-password'] ) ){
-            $userid = $usuariodao->getuserid( $_POST['login-username']);
-    		if ( $usuariodao->permisos($_POST['login-username']) == 'admin' )
-    			header("Location: ./Inicio.php?action=loginadmin&id=" . strval($userid));
-    		else
-    			header("Location: ./Inicio.php?action=loginprof&id=" . strval($userid));
-    	}
-    	else
-    		header("Location: ./Inicio.php?action=loginfail");
-    	break;
-
-    default :
-    	header("Location: ./Inicio.php");
-    	break;
-
 }
