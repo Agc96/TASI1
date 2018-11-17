@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Sistema de Gestión de Software | Mantenimiento de cursos por ciclo</title>
+    <!-- Meta tag para moviles -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <!-- Estilos incluyendo: Bootstrap, Font Icons, Plugins, etc.-->
+    <link rel="stylesheet" href="css/vendor.min.css">
+    <link id="mainStyles" rel="stylesheet" href="css/styles.min.css">
+    <link id="customStyles" rel="stylesheet" href="css/custom.css">
+    <!-- Modernizr -->
+    <script type="text/javascript" src="js/third-party/modernizr.min.js"></script>
+  </head>
+  <body>
+    <!-- Modal de creación de cursos por ciclo -->
+    <div class="modal fade" id="modal-curso-ciclo" tabindex="-1" role="dialog">
+      <form class="modal-dialog modal-lg" role="document" id="formulario-curso-ciclo" method="post">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title">Agregar un curso por ciclo</h4>
+            <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          </div>
+          <div class="modal-body">
+            <!-- Curso y ciclo -->
+            <div class="row">
+              <div class="col-lg-8 form-group">
+                <label for="registro-curso">Curso:</label>
+                <select id="registro-curso" name="curso" class="form-control form-control-sm" required="">
+                  <option value="" disabled="" selected="">Seleccione un ciclo...</option>
+                  <option value="1">INF144 - Técnicas de Programación</option>
+                  <option value="2">INF246 - Bases de Datos</option>
+                  <option value="3">INF265 - Aplicaciones de Ciencias de la Computación</option>
+                  <option value="4">INF227 - Desarrollo de Programas 2</option>
+                </select>
+              </div>
+              <div class="col-lg-4 form-group">
+                <label for="registro-ciclo">Ciclo:</label>
+                <select id="registro-ciclo" name="ciclo" class="form-control form-control-sm" required="">
+                  <option value="" disabled="" selected="">Seleccione un ciclo...</option>
+                  <option value="2">2018-2</option>
+                  <option value="1">2018-1</option>
+                </select>
+              </div>
+            </div>
+            <!-- Agregar un profesor -->
+            <div class="row">
+              <div class="col-sm col-12 form-group">
+                <label for="busqueda-profesor">Profesor encargado:</label>
+                <input type="text" name="busqueda-profesor" id="busqueda-profesor" class="form-control form-control-sm" placeholder="Busque un profesor por código o por nombre">
+              </div>
+              <div class="col-sm-auto search-button text-center">
+                <button type="button" class="btn btn-sm btn-info"><i class="icon-search"></i> Buscar</button>
+              </div>
+            </div>
+            <!-- Agregar un software -->
+            <div class="row">
+              <div class="col-sm col-12 form-group">
+                <label for="busqueda-software">Software requerido:</label>
+                <input type="text" name="busqueda-software" id="busqueda-software" class="form-control form-control-sm" placeholder="Busque un software por nombre">
+              </div>
+              <div class="col-sm-auto search-button text-center">
+                <button type="button" class="btn btn-sm btn-info"><i class="icon-search"></i> Buscar</button>
+              </div>
+            </div>
+            <!-- Lista de profesores y lista de software -->
+            <div class="row">
+              <div class="col-lg-6">
+                <h6>Lista de profesores</h6>
+                <ul class="mb-0">
+                  <li>César Aguilera</li>
+                  <li>Hilmar Hinojosa</li>
+                </ul>
+              </div>
+              <div class="col-lg-6">
+                <h6>Software requerido</h6>
+                <ul class="mb-0">
+                  <li>Oracle SQL Developer</li>
+                  <li>MySQL 8.0</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-sm btn-outline-secondary" data-dismiss="modal">Cancelar</button>
+            <button type="submit" class="btn btn-sm btn-primary">Enviar</button>
+          </div>
+        </div>
+      </form>
+    </div>
+    <!--      -->
+    <!-- Menu -->
+    <!--      -->
+    <div class="offcanvas-container" id="mobile-menu">
+      <div class="account-link">
+        <div class="user-ava"><img src="img/user.png" alt="Nombre de usuario" title="Nombre de usuario"></div>
+        <div class="user-info">
+          <h6 class="user-name">Nombre del usuario</h6>
+          <span class="text-sm text-white opacity-60">Administrador</span>
+        </div>
+      </div>
+      <nav class="offcanvas-menu">
+        <ul class="menu">
+          <!-- Inicio -->
+          <li class="has-children active">
+            <span><a href="#">Mantenimientos</a><span class="sub-menu-toggle"></span></span>
+            <ul class="offcanvas-submenu">
+              <li class="active"><a href="admin-curso.html">Cursos</a></li>
+              <li><a href="admin-ciclo.html">Ciclos</a></li>
+            </ul>
+          </li>
+          <!-- Opciones de usuario -->
+          <li class="offcanvas-header">
+            <h3 class="offcanvas-title">Opciones de usuario</h3>
+          </li>
+          <li><a href="admin-perfil.html">Ver perfil</a></li>
+          <li><a href="index.html">Cerrar sesión</a></li>
+        </ul>
+      </nav>
+    </div>
+    <!--        -->
+    <!-- Header -->
+    <!--        -->
+    <div class="topbar d-none"></div>
+    <header class="navbar navbar-sticky bg-dark">
+      <!-- Boton toggle del menu y titulo -->
+      <div class="site-branding">
+        <div class="inner">
+          <a class="offcanvas-toggle text-white" href="#mobile-menu" data-toggle="offcanvas"></a>
+          <h3 class="site-logo text-white"><span class="d-sm-inline d-none">Sistema de </span>Gestión de Software</h3>
+        </div>
+      </div>
+      <!-- Toolbar -->
+      <div class="toolbar"><div class="inner"><div class="tools">
+        <div class="account">
+          <!-- Icono del usuario -->
+          <a href="admin-perfil.html"></a>
+          <i class="icon-head"></i> <span class="account-label">Nombre del usuario</span>
+          <ul class="toolbar-dropdown">
+            <!-- Breve info del usuario -->
+            <li class="sub-menu-user">
+              <div class="user-ava"><img src="img/user.png" alt="Nombre del usuario" title="Nombre del usuario"></div>
+              <div class="user-info">
+                <h6 class="user-name">Nombre del usuario</h6>
+                <span class="text-xs text-muted">Administrador</span>
+              </div>
+            </li>
+            <!-- Menu del usuario -->
+            <li><a href="admin-perfil.html"><i class="icon-cog"></i>Configurar perfil</a></li>
+            <li><a href="index.html"><i class="icon-unlock"></i>Cerrar sesi&oacute;n</a></li>
+          </ul>
+        </div>
+      </div></div></div>
+    </header>
+    <!--           -->
+    <!-- Contenido -->
+    <!--           -->
+    <div class="offcanvas-wrapper">
+      <div class="container-fluid">
+        <h3>Mantenimiento de cursos por ciclo</h3>
+        <!-- Formulario de búsqueda -->
+        <form class="search-box">
+          <div class="row">
+            <!-- Curso -->
+            <div class="col-md-7 col-12 form-group">
+              <label for="busqueda-curso">Curso:</label>
+              <select id="busqueda-curso" name="curso" class="form-control form-control-sm">
+                <option value="">Todos</option>
+                <option value="1">INF144 - Técnicas de Programación</option>
+                <option value="2">INF246 - Bases de Datos</option>
+                <option value="3">INF265 - Aplicaciones de Ciencias de la Computación</option>
+                <option value="4">INF227 - Desarrollo de Programas 2</option>
+              </select>
+            </div>
+            <!-- Ciclo -->
+            <div class="col-sm form-group">
+              <label for="busqueda-ciclo">Ciclo:</label>
+              <select id="busqueda-ciclo" name="ciclo" class="form-control form-control-sm">
+                <option value="">Todos</option>
+                <option value="2">2018-2</option>
+                <option value="1">2018-1</option>
+              </select>
+            </div>
+            <!-- Botones -->
+            <div class="col-sm-auto text-center align-self-end">
+              <button class="btn btn-sm btn-info"><i class="icon-search"></i> Buscar</button>
+            </div>
+          </div>
+        </form>
+        <!-- Tabla de clientes -->
+        <h5>Lista de cursos del ciclo 2018-2</h5>
+        <div class="table-responsive">
+          <table class="table" id="curso-tabla">
+            <!-- Cabecera -->
+            <thead class="thead-light">
+              <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Curso</th>
+                <th scope="col">Lista de profesores</th>
+                <th scope="col">Software requerido</th>
+                <th scope="col" class="text-right">
+                  <button class="btn btn-sm btn-primary" data-toggle="modal" data-target="#modal-curso-ciclo"><i class="icon-plus"></i> <span class="d-sm-inline d-none">Agregar</span></button>
+                </th>
+              </tr>
+            </thead>
+            <!-- Datos -->
+            <tbody>
+              <tr>
+                <th scope="row">1</th>
+                <td>INF144<br>Técnicas de Programación</td>
+                <td>
+                  <ul class="mb-0">
+                    <li>Miguel Guanira</li>
+                    <li>Nancy Espinoza</li>
+                  </ul>
+                </td>
+                <td>
+                  <ul class="mb-0">
+                    <li>Lazarus 1.8.4</li>
+                  </ul>
+                </td>
+                <td class="text-right">
+                  <button class="btn btn-sm btn-danger" data-toggle="tooltip" data-original-title="Eliminar"><i class="icon-trash"></i></button>
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">2</th>
+                <td>INF246<br>Bases de Datos</td>
+                <td>
+                  <ul class="mb-0">
+                    <li>César Aguilera Serpa</li>
+                    <li>Juan Arenas</li>
+                    <li>Hilmar Hinojosa</li>
+                  </ul>
+                </td>
+                <td>
+                  <ul class="mb-0">
+                    <li>Oracle SQL Developer</li>
+                    <li>PostgreSQL 11.1</li>
+                    <li>MySQL 8.0</li>
+                  </ul>
+                </td>
+                <td class="text-right">
+                  <button class="btn btn-sm btn-danger" data-toggle="tooltip" data-original-title="Eliminar"><i class="icon-trash"></i></button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <!-- Boton para volver arriba -->
+    <a class="scroll-to-top-btn" href="#">
+      <i class="icon-arrow-up"></i>
+    </a>
+    <!-- Backdrop -->
+    <div class="site-backdrop"></div>
+    <!-- JavaScript (jQuery) libraries, plugins and custom scripts-->
+    <script type="text/javascript" src="js/third-party/vendor.min.js"></script>
+    <script type="text/javascript" src="js/third-party/scripts.min.js"></script>
+    <script type="text/javascript" src="js/utilidades.js"></script>
+    <!-- script type="text/javascript" src="js/admin/inicio.js"></script -->
+  </body>
+</html>
