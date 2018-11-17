@@ -20,3 +20,8 @@
 .search-box > .row > div {
 	margin-bottom: .5rem;
 }
+
+.search-button {
+	align-self: flex-end;
+	margin-bottom: .5rem;
+}

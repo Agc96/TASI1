@@ -25,8 +25,7 @@
     <!--           -->
     <div class="container">
       <!-- Formulario de inicio de sesion -->
-      <div align="center" style="height: 100px; width: 500px; margin:0 auto;">
-        <br>
+      <div class="login-box box-shadow">
         <form action="../Controlador/UsuarioControlador.php?action=login" method="post">
           <h4 class="login-title">Inicio de sesión</h4>
           <!-- E-mail y contraseña -->
@@ -34,27 +33,13 @@
             <input type="text" id="login-username" name="login-username" class="form-control" placeholder="Nombre de usuario" required>
             <span class="input-group-addon"><i class="icon-head"></i></span>
           </div>
-          <br>
           <div class="form-group input-group">
             <input type="password" id="login-password" name="login-password" class="form-control" placeholder="Contraseña" required>
             <span class="input-group-addon"><i class="icon-lock"></i></span>
             <div class="input-group-btn"><a class="btn btn-sm mt-1" id="show-password">Mostrar</a></div>
           </div>
-          <!-- Ingresar y otras opciones -->
-          <div class="row">
-            <!--
-            <div class="col-6">
-              <div class="custom-control custom-checkbox">
-                <input class="custom-control-input" type="checkbox" id="recuerdame" name="recuerdame" checked>
-                <label class="custom-control-label" for="recuerdame">Recordar contrase&ntilde;a</label>
-              </div>
-            </div>
-            <div class="col-6 text-right">
-              <a class="navi-link text-bold" href="password.html">¿Olvidaste la contraseña?</a>
-            </div>
-            -->
-          </div>
-          <div class="text-center mt-2">
+          <!-- Boton de ingresar -->
+          <div class="text-center">
             <button class="btn btn-primary" type="submit" id="login-submit" value="Login">Ingresar</button>
           </div>
         </form>
