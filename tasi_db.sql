@@ -46,7 +46,6 @@ DROP TABLE IF EXISTS `software`;
 CREATE TABLE `software`(
   `idsoftware` int(11) NOT NULL AUTO_INCREMENT,
   `nombresoftware` varchar(45) NOT NULL,
-  `codigocurso` varchar(7) NOT NULL,
   PRIMARY KEY(`idsoftware`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
@@ -65,18 +64,22 @@ CREATE TABLE `solicitud`(
   `observacionesProfesor` varchar(45) NOT NULL,
   `observacionesSoporte` varchar(45) NOT NULL,
   PRIMARY KEY(`idsolicitud`),
+  `idsoftware` int(11) NOT NULL,
   FOREIGN KEY (idsoftware)
     REFERENCES software(idsoftware)
     ON DELETE CASCADE,
+  `idsistemaOperativo` int(11) NOT NULL,
   FOREIGN KEY (idsistemaOperativo)
     REFERENCES sistemaOperativo(idsistemaOperativo)
     ON DELETE CASCADE,
+  `idcurso` int(11) NOT NULL,
   FOREIGN KEY (idcurso)
     REFERENCES curso(idcurso)
     ON DELETE CASCADE,
+  `idusuario` int(11) NOT NULL,
   FOREIGN KEY (idusuario)
     REFERENCES usuario(idusuario)
-    ON DELETE CASCADE,
+    ON DELETE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 --
@@ -88,6 +91,10 @@ LOCK TABLES `usuario` WRITE;
 INSERT INTO `usuario` VALUES (1,'master','scama@pucp.pe','master','admin'),(2,'user','user@pucp.pe','user','profesor');
 /*!40000 ALTER TABLE `usuario` ENABLE KEYS */;
 UNLOCK TABLES;
+
+INSERT INTO `curso` VALUES(1,'Lenguaje de Programación 1','INF123'),(2,'Desarrollo de Programas 2','INF273');
+INSERT INTO `sistemaOperativo` VALUES(1,'Windows 7'),(2,'Linux Mint');
+INSERT INTO `software` VALUES(1,'Visual Studio 2013'),(2,'Visual Studio 2015');
 
 --
 -- Dumping events for database 'tasi1'
